@@ -1,6 +1,6 @@
 {
 	"name": "lelesys/news",
-	"type": "typo3-flow-application",
+	"type": "typo3-flow-package",
 	"description": "News plugin for TYPO3 Neos",
 	"license": "GPL-3.0+",
 	"authors": [
