@@ -11,9 +11,11 @@
 	<h5><neos:link.node node="{node}">{title}</neos:link.node></h5>
 	<p>
 		<f:if condition="{dateTime}">
-			<span><i><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></i></span> <br />
+			<span><i><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></i></span>
 		</f:if>
-		{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 20, append: '...')}
+		<span>{f:if(condition: '{authorName}', then: ', {f:translate(id: \'by\', package: \'Lelesys.News\')}: {authorName}', else: '')}</span>
+		<br />
+		{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 100, append: '...')}
 		<neos:link.node node="{node}">
 			<f:translate id="readMore" package="Lelesys.News">Read more</f:translate>
 		</neos:link.node>

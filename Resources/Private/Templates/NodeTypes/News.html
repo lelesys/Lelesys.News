@@ -8,7 +8,7 @@
 			<f:if condition="{dateTime}">
 				<f:then>
 					<div class="entry-meta">
-						<b><span class="entry-date"><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></span></b>
+						<b><span class="entry-date"><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date>{f:if(condition: '{authorName}', then: ', {f:translate(id: \'by\', package: \'Lelesys.News\')}: {authorName}', else: '')}</span></b>
 					</div>
 				</f:then>
 			</f:if>
@@ -17,14 +17,6 @@
 			<div class="entry-content">
 				{main -> f:format.raw()}
 			</div>
-			<f:if condition="{authorName}">
-				<f:then>
-					<footer class="entry-meta">
-						<f:translate id="author" package="Lelesys.News">Author</f:translate> <b>{authorName}</b>
-						{f:if(condition: '{authorEmail}', then: '&lt;{authorEmail}&gt;')}
-					</footer>
-				</f:then>
-			</f:if>
 		</div>
 		<f:if condition="{relatedNews}">
 			<f:then>

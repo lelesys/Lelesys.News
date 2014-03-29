@@ -1,9 +1,0 @@
-
-resources:
-  methods:
-    Lelesys_News: 'method(Lelesys\News\Controller\NewsController->(index|latestNews|archiveMenu|tags)Action())'
-
-acls:
-  Everybody:
-    methods:
-      Lelesys_News: GRANT
