@@ -137,7 +137,7 @@
       type: string
       defaultValue: NULL
       ui:
-        label: 'Sort by property'
+        label: 'Sort order'
         inspector:
           group: 'newsConfiguration'
     thumbnailMaxWidth:

@@ -28,7 +28,6 @@ class ConfigurationHelper implements ProtectedContextAwareInterface {
 				if ($node->hasProperty($key)) {
 					$propertyValue =  $node->getProperty($key);
 					if (!empty($propertyValue)) {
-						echo $propertyValue;
 						$configuration[$key] = $propertyValue;
 					}
 				}
