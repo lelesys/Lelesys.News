@@ -1,0 +1,21 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+{namespace m=TYPO3\Media\ViewHelpers}
+
+<div>
+	<f:if condition="{thumbnailImage}">
+		<figure class="typo3-neos-alignment-left">
+			<m:image asset="{thumbnailImage.properties.image}" maximumWidth="{configuration.thumbnailMaxWidth}" maximumHeight="{configuration.thumbnailMaxHeight}" alt="{thumbnailImage.properties.alternativeText}" />
+		</figure>
+	</f:if>
+	<h5><neos:link.node node="{node}">{title}</neos:link.node></h5>
+	<p>
+		<f:if condition="{dateTime}">
+			<span><i><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></i></span> <br />
+		</f:if>
+		{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 20, append: '...')}
+		<neos:link.node node="{node}">
+			<f:translate id="readMore" package="Lelesys.News">Read more</f:translate>
+		</neos:link.node>
+	</p>
+</div>

@@ -1,0 +1,74 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<neos:contentElement.wrap>
+	<div class="col-sm-12 news-detail">
+		<header class="entry-header">
+			<div class="sectiontitlepost">
+				<neos:contentElement.editable property="title" tag="h1" />
+			</div>
+			<f:if condition="{dateTime}">
+				<f:then>
+					<div class="entry-meta">
+						<b><span class="entry-date"><f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date></span></b>
+					</div>
+				</f:then>
+			</f:if>
+		</header>
+		<div class="innerblogboxtwo">
+			<div class="entry-content">
+				{main -> f:format.raw()}
+			</div>
+			<f:if condition="{authorName}">
+				<f:then>
+					<footer class="entry-meta">
+						<f:translate id="author" package="Lelesys.News">Author</f:translate> <b>{authorName}</b>
+						{f:if(condition: '{authorEmail}', then: '&lt;{authorEmail}&gt;')}
+					</footer>
+				</f:then>
+			</f:if>
+		</div>
+		<f:if condition="{relatedNews}">
+			<f:then>
+				<div class="relatedNews">
+					<b><f:translate id="relatedNews" package="Lelesys.News">Related News</f:translate>: </b>
+					<f:for each="{relatedNews}" as="news">
+						<p>
+							<neos:link.node node="{news}">{news.properties.title}</neos:link.node> - <f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date>
+						</p>
+					</f:for>
+				</div>
+			</f:then>
+		</f:if>
+		<f:if condition="{categories}">
+			<f:then>
+				<div class="category">
+					<b><f:translate id="categories" package="Lelesys.News">Categories</f:translate>: </b>
+					<f:for each="{categories}" as="category" iteration="catIterator">
+						<span>
+							<neos:link.node node="{category}">{category.properties.title}</neos:link.node>{f:if(condition: '{catIterator.isLast}', then: '', else: ',')}
+						</span>
+					</f:for>
+				</div>
+			</f:then>
+			<f:else>
+				<f:if condition="{primaryCategory}">
+					<f:then>
+						<div class="category">
+							<b><f:translate id="categories" package="Lelesys.News">Categories</f:translate>: </b>
+							<span>
+								<neos:link.node node="{primaryCategory}">{primaryCategory.properties.title}</neos:link.node>
+							</span>
+						</div>
+					</f:then>
+				</f:if>
+			</f:else>
+		</f:if>
+		<f:if condition="{tags}">
+			<f:then>
+				<div class="tags">
+					<b><f:translate id="tags" package="Lelesys.News">Tags</f:translate>: </b>
+					{tags -> f:format.raw()}
+				</div>
+			</f:then>
+		</f:if>
+	</div>
+</neos:contentElement.wrap>

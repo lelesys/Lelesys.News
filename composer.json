@@ -1,0 +1,20 @@
+{
+	"name": "lelesys/news",
+	"type": "typo3-flow-application",
+	"description": "News plugin for TYPO3 Neos",
+	"license": "GPL-3.0+",
+	"authors": [
+		{
+			"name": "Lelesys Infotech Pvt. Ltd.",
+			"email": "typo3neos@lelesys.com"
+		}
+	],
+	"require": {
+		"typo3/neos": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"Lelesys\\News": "Classes"
+		}
+	}
+}

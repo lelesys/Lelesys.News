@@ -1,0 +1,92 @@
+# Category document
+prototype(Lelesys.News:Category) {
+	templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/Category.html'
+
+	# If more content is required on the category node then this code can be added
+	#  by overriding this prototype
+	#main = TYPO3.Neos:ContentCollection {
+	#	nodePath = 'main'
+	#}
+
+	# list of news of this category
+	newsList = Lelesys.News:List
+	newsList {
+		# filter the news collection by this category!
+		newsCollection.@process.filter = ${NewsFilter.byCategory(value, node.identifier)}
+	}
+}
+
+# Category document
+# this is inherited from TYPO3.Neos.NodeTypes:Menu
+# So only the facility of newsFolder is added
+prototype(Lelesys.News:CategoryMenu) {
+	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder').get(0) : null}
+}
+
+# single news document. formatting by single news item can be changed
+# inside other views like List, Latest by overriding the template path or
+# additional TS properties
+prototype(Lelesys.News:News) {
+	@override.configuration = ${inputConfiguration ? inputConfiguration : Configuration.setting('Lelesys.News.view.single')}
+	@override.configuration.@process.mergeConfiguration = ${inputConfiguration ? value : NewsConfiguration.mergeWithNodeProperties(value, node)}
+	configuration = ${configuration}
+
+	# first image found in the news content becomes the thumbnail image to be shown in the
+	# list and latest views
+	thumbnailImage = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Image]').first().get(0)}
+
+	main = TYPO3.Neos:ContentCollection
+	main.nodePath = 'main'
+
+	# Text from the first text node is taken as short description shown on list/latest views
+	teaserText = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Text]').property('text')}
+}
+
+# News list
+prototype(Lelesys.News:List) {
+	# default templatePath is below which is set automatically by Neos.
+	# to change template override templatePath
+	# templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.html'
+
+	# newsFolder is read from current node's newsFolder property if exists
+	# otherwise the closest Folder node is selected
+	@override.newsFolderNode = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : q(node).closest('[instanceof Lelesys.News:Folder]')}
+
+	# configuration merged from Settings and from the node properties.
+	# this way configuration can be changed globally for all sites in Settings.yaml OR
+	# change configuration in your Site package's TypoScript by overriding the values OR
+	# if you set a new value for the configuration in the node property then it is only available
+	# for particular view. in this case if you do any change in Settings or TypoScript level
+	# then it will still take the configuration value from the node properties.
+	@override.configuration = ${Configuration.setting('Lelesys.News.view.list')}
+	@override.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	configuration = ${configuration}
+
+	# TODO - remove the condition if Content
+	newsCollection = ${q(node).is('[instanceof TYPO3.Neos:Content]') ? q(newsFolderNode).children('[instanceof Lelesys.News:News]').get() : newsFolderNode.children('[instanceof Lelesys.News:News]').get()}
+	# sort nodes
+    newsCollection.@process.sort = ${NewsSort.by(value, configuration.sortProperty, configuration.sortOrder)}
+
+	# this renders a single item inside the list
+	newsItem = Lelesys.News:News
+	newsItem {
+		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.html'
+	}
+}
+
+# News latest (almost same as list)
+prototype(Lelesys.News:Latest) < prototype(Lelesys.News:List) {
+	# load merged configuration
+	@override.configuration = ${Configuration.setting('Lelesys.News.view.latest')}
+	@overrode.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	configuration = ${configuration}
+
+	# this renders a single item inside the latest view
+	newsItem = Lelesys.News:News
+	newsItem {
+		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/LatestItem.html'
+	}
+
+	# show only few nodes
+	newsCollection.@process.slice = ${Array.slice(value, 0, String.toInteger(configuration.numberOfItems))}
+}

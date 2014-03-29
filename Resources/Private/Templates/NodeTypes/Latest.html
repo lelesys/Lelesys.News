@@ -1,0 +1,20 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace typo3cr=TYPO3\TYPO3CR\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+
+<div>
+	<f:if condition="{newsCollection}">
+		<f:then>
+			<typo3cr:widget.paginate nodes="{newsCollection}" as="paginatedNewsItems" configuration="{configuration.pagination}">
+				<div>
+					<f:for each="{paginatedNewsItems}" as="news">
+						<ts:render path="newsItem" context="{node: news, inputConfiguration: configuration}" />
+					</f:for>
+				</div>
+			</typo3cr:widget.paginate>
+		</f:then>
+		<f:else>
+			<p><f:translate id="noNewsToDisplay" package="Lelesys.News">No news to display</f:translate></p>
+		</f:else>
+	</f:if>
+</div>

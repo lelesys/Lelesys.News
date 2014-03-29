@@ -1,0 +1,125 @@
+'Lelesys.News:Common':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        newsConfiguration:
+          label: 'News configuration'
+          position: 1
+  properties:
+    newsFolder:
+      type: reference
+      ui:
+        label: 'News folder'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+          editorOptions:
+            nodeTypes: ['Lelesys.News:Folder']
+    dateFormat:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Date format'
+        inspector:
+          group: 'newsConfiguration'
+    sortProperty:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Sort by property'
+        inspector:
+          group: 'newsConfiguration'
+    sortOrder:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Sort by property'
+        inspector:
+          group: 'newsConfiguration'
+    thumbnailMaxWidth:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Thumbnail max width'
+        inspector:
+          group: 'newsConfiguration'
+    thumbnailMaxHeight:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Thumbnail max height'
+        inspector:
+          group: 'newsConfiguration'
+
+'Lelesys.News:Paginated':
+  abstract: TRUE
+  ui:
+    inspector:
+      groups:
+        paginatorConfiguration:
+          label: 'Paginator configuration'
+          position: 2
+  properties:
+    itemsPerPage:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Items per page'
+        inspector:
+          group: 'paginatorConfiguration'
+    maximumNumberOfLinks:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Maximum number of links'
+        inspector:
+          group: 'paginatorConfiguration'
+
+'Lelesys.News:List':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+    - 'Lelesys.News:Paginated'
+    - 'Lelesys.News:Common'
+  ui:
+    label: 'News list'
+    icon: 'icon-list'
+    inlineEditable: TRUE
+    group: 'news'
+
+
+'Lelesys.News:Latest':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+    - 'Lelesys.News:Common'
+  ui:
+    label: 'News latest'
+    icon: 'icon-list'
+    group: 'news'
+    inlineEditable: TRUE
+  properties:
+    numberOfItems:
+      type: string
+      defaultValue: NULL
+      ui:
+        label: 'Number of items'
+        inspector:
+          group: 'newsConfiguration'
+
+'Lelesys.News:CategoryMenu':
+  superTypes:
+    - 'TYPO3.Neos.NodeTypes:Menu'
+  ui:
+    label: 'News category menu'
+    group: 'news'
+    inlineEditable: TRUE
+  properties:
+    newsFolder:
+      type: reference
+      ui:
+        label: 'News folder'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'options'
+          editorOptions:
+            nodeTypes: ['Lelesys.News:Folder']

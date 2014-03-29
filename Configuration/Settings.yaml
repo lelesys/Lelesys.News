@@ -1,0 +1,53 @@
+##
+# Auto include typoscript configuration
+#
+TYPO3:
+  Neos:
+    nodeTypes:
+      groups:
+        news:
+          position: 'end'
+          label: 'News'
+    typoScript:
+      autoInclude:
+        'Lelesys.News': TRUE
+
+  TypoScript:
+    defaultContext:
+      NewsConfiguration: 'Lelesys\News\TypoScript\Eel\Helper\ConfigurationHelper'
+      NewsFilter: 'Lelesys\News\TypoScript\Eel\Helper\FilterHelper'
+      NewsSort: 'Lelesys\News\TypoScript\Eel\Helper\SortHelper'
+
+##
+# The configuration for news plugin
+#
+Lelesys:
+  News:
+    view:
+      list:
+        pagination:
+          itemsPerPage: 10
+          maximumNumberOfLinks: 15
+        sortProperty: 'dateTime'
+        sortOrder: 'DESC'
+        dateFormat: 'F jS, Y'
+        thumbnailMaxWidth: 80
+        thumbnailMaxHeight: 80
+      latest:
+        numberOfItems: 10
+        pagination:
+          itemsPerPage: 5
+          maximumNumberOfLinks: 5
+        sortProperty: 'dateTime'
+        sortOrder: 'DESC'
+        dateFormat: 'F jS, Y'
+        thumbnailMaxWidth: 80
+        thumbnailMaxHeight: 80
+      single:
+        dateFormat: 'F jS, Y'
+      rss:
+        title: ''
+        description: ''
+        uri: ''
+        dateFormat: 'd/m/y'
+
