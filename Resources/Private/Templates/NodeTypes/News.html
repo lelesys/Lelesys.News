@@ -58,7 +58,9 @@
 			<f:then>
 				<div class="tags">
 					<b><f:translate id="tags" package="Lelesys.News">Tags</f:translate>: </b>
-					{tags -> f:format.raw()}
+					<f:for each="{tags}" as="tag" iteration="tagIterator">
+                        <a href="{neos:uri.node(node: newsListNode)}?tag={tag}">{tag}</a>{f:if(condition: '{tagIterator.isLast}', then: '', else: ',')}
+					</f:for>
 				</div>
 			</f:then>
 		</f:if>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>{namespace neos=TYPO3\Neos\ViewHelpers}{namespace ts=TYPO3\TypoScript\ViewHelpers}
+<rss version="2.0">
+    <channel>
+        <title>{feedTitle}</title>
+        <link>{feedUrl}</link>
+        <description>{feedDescription}</description>
+        <f:if condition="{newsCollection}">
+            <f:then>
+                <f:for each="{newsCollection}" as="news">
+                    <ts:render path="newsItem" context="{node: news, inputConfiguration: configuration}" />
+                </f:for>
+            </f:then>
+        </f:if>
+    </channel>
+</rss>
+{addResponseHeader}

@@ -1,0 +1,6 @@
+<item>{namespace neos=TYPO3\Neos\ViewHelpers}
+    <title>{title}</title>
+    <link>{neos:uri.node(node: node, format: 'html', absolute: 'TRUE')}</link>
+    <description>{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 100, append: '...')}</description>
+    <pubDate>{dateTime -> f:format.date(format: 'c')}</pubDate>
+</item>

@@ -15,8 +15,6 @@ TYPO3:
   TypoScript:
     defaultContext:
       NewsConfiguration: 'Lelesys\News\TypoScript\Eel\Helper\ConfigurationHelper'
-      NewsFilter: 'Lelesys\News\TypoScript\Eel\Helper\FilterHelper'
-      NewsSort: 'Lelesys\News\TypoScript\Eel\Helper\SortHelper'
 
 ##
 # The configuration for news plugin
@@ -45,9 +43,4 @@ Lelesys:
         thumbnailMaxHeight: 80
       single:
         dateFormat: 'F jS, Y'
-      rss:
-        title: ''
-        description: ''
-        uri: ''
-        dateFormat: 'd/m/y'
 

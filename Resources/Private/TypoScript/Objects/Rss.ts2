@@ -1,0 +1,13 @@
+# the rss feed for news
+# if there is list view of news on page and change the format html to rss then this will show rss feed of news list
+# eg., http://example.com/news.html - list view of news
+# http://example.com/news.rss - show rss feed of news
+rss = Lelesys.News:List
+rss {
+	templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.rss'
+	newsItem.templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.rss'
+	feedTitle = ${!String.isBlank(q(newsFolderNode).property('feedTitle')) ? q(newsFolderNode).property('feedTitle') : q(newsFolderNode).property('title')}
+	feedDescription = ${!String.isBlank(q(newsFolderNode).property('feedDescription')) ? q(newsFolderNode).property('feedDescription') : q(newsFolderNode).property('title')}
+	feedUrl = ${request.httpRequest.uri}
+	addResponseHeader = Lelesys.News:ResponseManipulator
+}
