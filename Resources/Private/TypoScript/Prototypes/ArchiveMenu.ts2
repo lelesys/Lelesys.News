@@ -6,7 +6,7 @@ prototype(Lelesys.News:ArchiveMenu) < prototype(TYPO3.Neos.NodeTypes:Menu) {
 	filter = 'Lelesys.News:News'
 	entryLevel = 0
 	renderHiddenInIndex = TRUE
-	items.@process.group = ${q(value).group().get()}
+	items.@process.group = ${Array.isEmpty(value) ? value : q(value).group().get()}
 
 	# the node where the list view is presented, defaults to the startingPoint
 	# this can be overridden to change the different news list view
