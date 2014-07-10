@@ -48,4 +48,13 @@ prototype(Lelesys.News:List) {
 	newsItem {
 		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.html'
 	}
+
+	# uncached the list view
+	@cache {
+		mode = 'uncached'
+		context {
+			1 = 'node'
+			2 = 'documentNode'
+		}
+	}
 }
