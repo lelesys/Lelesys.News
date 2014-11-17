@@ -10,7 +10,7 @@
 		}
 	],
 	"require": {
-		"typo3/neos": "1.1.*"
+		"typo3/neos": "1.2.*"
 	},
 	"autoload": {
 		"psr-0": {
