@@ -12,7 +12,7 @@ use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 /**
  * Extended EEL filter() operation for News
  */
-class FilterOperation extends \TYPO3\Neos\TypoScript\FlowQueryOperations\FilterOperation {
+class FilterOperation extends \TYPO3\TYPO3CR\Eel\FlowQueryOperations\FilterOperation {
 	/**
 	 * {@inheritdoc}
 	 *
