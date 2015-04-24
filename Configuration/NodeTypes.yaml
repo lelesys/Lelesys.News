@@ -81,7 +81,7 @@
       validation:
         'TYPO3.Neos/Validation/EmailAddressValidator': []
     dateTime:
-      type: date
+      type: DateTime
       ui:
         label: 'Date'
         reloadIfChanged: TRUE
