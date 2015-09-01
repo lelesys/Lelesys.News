@@ -8,7 +8,7 @@ prototype(Lelesys.News:News) {
 
 	# first image found in the news content becomes the thumbnail image to be shown in the
 	# list and latest views
-	thumbnailImage = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Image]').first().get(0)}
+	thumbnailImage = ${q(node).find('[instanceof TYPO3.Neos.NodeTypes:Image],[instanceof TYPO3.Neos.NodeTypes:TextWithImage]').first().get(0)}
 
 	main = TYPO3.Neos:ContentCollection
 	main.nodePath = 'main'
