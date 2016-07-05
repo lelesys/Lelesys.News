@@ -1,0 +1,54 @@
+#
+# Collects news items using a Query against the Elasticsearch index for the website
+#
+prototype(Lelesys.News:ElasticsearchNewsCollector) < prototype(TYPO3.TypoScript:Value) {
+    categoryAndTagFilter = Lelesys.News:ElasticsearchCategoryAndTagFilter
+    dateFilter = Lelesys.News:ElasticsearchDateFilter
+
+    value = ${Search.query(newsFolderNode).nodeType('Lelesys.News:News')}
+    value.@process.filterByCategoryAndTag = ${value.queryFilterMultiple(this.categoryAndTagFilter)}
+    value.@process.filterByDate = ${request.arguments.year ? value.queryFilter('range', this.dateFilter) : value}
+    value.@process.sort = ${configuration.sortOrder == 'ASC' ? value.sortAsc(configuration.sortProperty) : value.sortDesc(configuration.sortProperty)}
+
+    value.@process.execute = ${value.execute()}
+}
+
+#
+# returns a raw array to use for category / tag filtering
+#
+prototype(Lelesys.News:ElasticsearchCategoryAndTagFilter) < prototype(TYPO3.TypoScript:Value) {
+    value = TYPO3.TypoScript:RawArray {
+        catgeories = ${q(node).is('[instanceof Lelesys.News:List]') ? (q(node).property('filterByCategories') ? q(node).property('filterByCategories') : null) : null}
+        tags = ${request.arguments.tag}
+    }
+}
+
+#
+# returns a raw array to use for date filtering
+#
+prototype(Lelesys.News:ElasticsearchDateFilter) < prototype(TYPO3.TypoScript:Value) {
+    filterByDateStart = TYPO3.TypoScript:Case {
+        yearAndMonth {
+            condition = ${request.arguments.year && request.arguments.month}
+            renderer = ${Date.parse(request.arguments.month + '/' + request.arguments.year, 'm/Y')}
+        }
+        year {
+            condition = ${request.arguments.year}
+            renderer = ${Date.parse('01/' + request.arguments.year, 'm/Y')}
+        }
+        default {
+            condition = true
+            renderer = ${Date.now()}
+        }
+    }
+    @context.filterByDateStart = ${this.filterByDateStart}
+    @context.filterByDateEnd = ${request.arguments.month ? Date.add(this.filterByDateStart, 'P1M') : Date.add(this.filterByDateStart, 'P1Y')}
+
+    value = TYPO3.TypoScript:RawArray {
+        dateTime = TYPO3.TypoScript:RawArray {
+            gte = ${Date.format(filterByDateStart, 'm/Y')}
+            lt = ${Date.format(filterByDateEnd, 'm/Y')}
+            format = 'MM/yyyy'
+        }
+    }
+}

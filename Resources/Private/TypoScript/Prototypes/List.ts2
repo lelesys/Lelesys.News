@@ -19,6 +19,7 @@ prototype(Lelesys.News:List) {
 	@context.configuration = ${this.configuration}
 
 	newsCollection = Lelesys.News:NewsCollector
+	newsCollection.@if.newsFolderFound = ${newsFolderNode != null}
 
 	# this renders a single item inside the list
 	newsItem = Lelesys.News:News
