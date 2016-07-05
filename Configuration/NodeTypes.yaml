@@ -93,6 +93,11 @@
       validation:
         'TYPO3.Neos/Validation/NotEmptyValidator': []
         'TYPO3.Neos/Validation/DateTimeValidator': []
+      search:
+        elasticSearchMapping:
+          type: 'date'
+          format: 'date_time_no_millis'
+        indexing: '${(value ? Date.format(value, "Y-m-d\TH:i:sP") : null)}'
     relatedNews:
       type: references
       ui:
@@ -112,6 +117,12 @@
       validation:
         regularExpression:
           regularExpression: '/[a-zA-Z0-9\,]/'
+      search:
+        elasticSearchMapping:
+          type: string
+          index: not_analyzed
+          include_in_all: false
+        indexing: ${String.split(value, ',')}
     categories:
       type: references
       ui:
