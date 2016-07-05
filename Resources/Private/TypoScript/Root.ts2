@@ -5,7 +5,6 @@ include: Prototypes/News.ts2
 include: Prototypes/List.ts2
 include: Prototypes/Category.ts2
 include: Prototypes/Latest.ts2
-include: Prototypes/MetaTags.ts2
 include: Prototypes/ResponseManipulator.ts2
 
 # Objects
