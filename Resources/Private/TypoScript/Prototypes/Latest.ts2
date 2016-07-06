@@ -1,8 +1,8 @@
 # News latest (almost same as list)
 prototype(Lelesys.News:Latest) < prototype(Lelesys.News:List) {
 	# load merged configuration
-	@override.configuration = ${Configuration.setting('Lelesys.News.view.latest')}
-	@overrode.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	@context.configuration = ${Configuration.setting('Lelesys.News.view.latest')}
+	@context.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
 	configuration = ${configuration}
 
 	# this renders a single item inside the latest view
