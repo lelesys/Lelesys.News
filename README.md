@@ -28,6 +28,14 @@ prototype(Lelesys.News:Latest) {
 }
 ```
 
+The list view fetches a maximum of 1000 items (before pagination is applied!), this can be adjusted with:
+
+```
+newsCollection = Lelesys.News:ElasticsearchNewsCollector {
+    value.@process.limit = ${value.limit(42)}
+}
+```
+
 To enable logging of the queries sent to Elasticsearch (`Data/Logs/ElasticSearch.log`), you can do:
 
 ```

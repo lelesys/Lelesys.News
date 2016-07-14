@@ -9,6 +9,7 @@ prototype(Lelesys.News:ElasticsearchNewsCollector) < prototype(TYPO3.TypoScript:
     value.@process.filterByCategoryAndTag = ${value.queryFilterMultiple(this.categoryAndTagFilter)}
     value.@process.filterByDate = ${request.arguments.year ? value.queryFilter('range', this.dateFilter) : value}
     value.@process.sort = ${configuration.sortOrder == 'ASC' ? value.sortAsc(configuration.sortProperty) : value.sortDesc(configuration.sortProperty)}
+    value.@process.limit = ${value.limit(1000)}
 
     value.@process.execute = ${value.execute()}
 }
