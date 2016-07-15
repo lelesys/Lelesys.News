@@ -6,10 +6,7 @@ prototype(Lelesys.News:Latest) < prototype(Lelesys.News:List) {
 	configuration = ${configuration}
 
 	# this renders a single item inside the latest view
-	newsItem = Lelesys.News:News
-	newsItem {
-		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/LatestItem.html'
-	}
+	newsItem.templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/LatestItem.html'
 
 	# show only few nodes
 	newsCollection.@process.slice = ${q(value).count() > 0 ? q(value).slice(0, String.toInteger(configuration.numberOfItems)).get() : value}
