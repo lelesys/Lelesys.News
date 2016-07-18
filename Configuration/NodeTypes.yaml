@@ -1,6 +1,19 @@
+'Lelesys.News:ThumbnailSwitchMixin':
+  abstract: TRUE
+  properties:
+    disableThumbnails:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Disable thumbnails'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'newsConfiguration'
+
 'Lelesys.News:Folder':
   superTypes:
     'TYPO3.Neos:Document': TRUE
+    'Lelesys.News:ThumbnailSwitchMixin': TRUE
   ui:
     label: 'News folder'
     icon: 'icon-folder-open'
@@ -23,6 +36,10 @@
       type: string
       ui:
         label: 'Feed description'
+        inspector:
+          group: 'news'
+    disableThumbnails:
+      ui:
         inspector:
           group: 'news'
 
@@ -269,6 +286,7 @@
 'Lelesys.News:List':
   superTypes:
     'TYPO3.Neos:Content': TRUE
+    'Lelesys.News:ThumbnailSwitchMixin': TRUE
     'Lelesys.News:Paginated': TRUE
     'Lelesys.News:Common': TRUE
   ui:
@@ -280,6 +298,7 @@
 'Lelesys.News:Latest':
   superTypes:
     'TYPO3.Neos:Content': TRUE
+    'Lelesys.News:ThumbnailSwitchMixin': TRUE
     'Lelesys.News:Common': TRUE
   ui:
     label: 'News latest'
