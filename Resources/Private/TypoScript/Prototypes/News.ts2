@@ -17,7 +17,7 @@ prototype(Lelesys.News:News) {
 	teaserText = ${q(node).children('main').children('[instanceof TYPO3.Neos.NodeTypes:Text]').property('text')}
 
 	# split tags with comma seperated
-	tags = ${q(node).property('tags') != null ? String.split(q(node).property('tags'), ',') : null}
+	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
 
 	# the node where the list view is presented
 	# this can be overridden to change the different news list view
