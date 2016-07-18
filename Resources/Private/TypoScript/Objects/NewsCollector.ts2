@@ -1,0 +1,25 @@
+prototype(Lelesys.News:NewsCollector) < prototype(TYPO3.TypoScript:Value) {
+    value = ${q(newsFolderNode).children('[instanceof Lelesys.News:News]').get()}
+
+    # Filter and sorting
+    @context.filterByCategories = ${q(node).is('[instanceof Lelesys.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : '' : ''}
+    @context.filterByTag = ${request.arguments.tag}
+    @context.filterByYear = ${request.arguments.year}
+    @context.filterByMonth = ${request.arguments.month}
+
+    # 1. filter the news collection by one or many categories if applicable
+    # this internally uses the extended filter() operation
+    value.@process.filterByCategories = ${filterByCategories != null && filterByCategories != '' ? q(value).filter('[categories *= \'' + filterByCategories + '\']').get() : value}
+
+    # 2. filter the news collection by given year if applicable
+    value.@process.filterByYear = ${filterByYear != null && filterByMonth == null ? q(value).filter('[dateTime = \'' + filterByYear + '\']', 'Y').get() : value}
+
+    # 3. filter the news collection by given year and month if applicable
+    value.@process.filterByYearAndMonth = ${filterByYear != null && filterByMonth != null ? q(value).filter('[dateTime = \'' + filterByYear + '/' + filterByMonth + '\']', 'Y/m').get() : value}
+
+    # 4. filter the news collection by a tag if applicable
+    value.@process.filterByTag = ${filterByTag != null ? q(value).filter('[tags *= ' + filterByTag + ']').get() : value}
+
+    # sort nodes
+    value.@process.sort = ${q(value).count() > 0 ? q(value).sort(configuration.sortProperty, configuration.sortOrder).get() : value}
+}
