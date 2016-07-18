@@ -24,7 +24,7 @@
 					<b><f:translate id="relatedNews" package="Lelesys.News">Related News</f:translate>: </b>
 					<f:for each="{relatedNews}" as="news">
 						<p>
-							<neos:link.node node="{news}">{news.properties.title}</neos:link.node> - <f:format.date format="{configuration.dateFormat}">{dateTime}</f:format.date>
+							<neos:link.node node="{news}">{news.properties.title}</neos:link.node> - <f:format.date format="{configuration.dateFormat}">{news.properties.dateTime}</f:format.date>
 						</p>
 					</f:for>
 				</div>
