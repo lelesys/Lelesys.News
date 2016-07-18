@@ -1,10 +1,3 @@
-# add meta tags to page object
-# this will help to improve search engine optimization (SEO)
-prototype(TYPO3.Neos:Page) {
-	head.metaTags = Lelesys.News:MetaTags
-	@position = 'before titleTag'
-}
-
 # Folder document shows news list by default from current folder
 prototype(TYPO3.Neos:PrimaryContent).folder {
 	condition = ${q(documentNode).is('[instanceof Lelesys.News:Folder]')}

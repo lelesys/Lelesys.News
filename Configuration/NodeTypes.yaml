@@ -121,26 +121,6 @@
           group: 'news'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
-    metaKeywords:
-      type: string
-      ui:
-        label: 'Meta keywords'
-        inspector:
-          group: 'news'
-      validation:
-        'TYPO3.Neos/Validation/StringLengthValidator':
-          minimum: 1
-          maximum: 255
-    metaDescription:
-      type: string
-      ui:
-        label: 'Meta description'
-        inspector:
-          group: 'news'
-      validation:
-        'TYPO3.Neos/Validation/StringLengthValidator':
-          minimum: 1
-          maximum: 500
 
 'Lelesys.News:Common':
   abstract: TRUE
