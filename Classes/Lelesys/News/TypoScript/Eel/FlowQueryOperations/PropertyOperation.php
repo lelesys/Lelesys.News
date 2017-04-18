@@ -57,7 +57,7 @@ class PropertyOperation extends AbstractOperation {
 	 */
 	public function evaluate(FlowQuery $flowQuery, array $arguments) {
 		if (!isset($arguments[0]) || empty($arguments[0])) {
-			throw new \TYPO3\Eel\FlowQuery\FlowQueryException('property_array() does not support returning all attributes yet', 1332492263);
+			throw new \Neos\Eel\FlowQuery\FlowQueryException('property_array() does not support returning all attributes yet', 1332492263);
 		} else {
 			$context = $flowQuery->getContext();
 			$propertyPath = $arguments[0];
@@ -68,7 +68,7 @@ class PropertyOperation extends AbstractOperation {
 
 			$element = $context[0];
 			if ($propertyPath[0] === '_') {
-				return \TYPO3\Flow\Reflection\ObjectAccess::getPropertyPath($element, substr($propertyPath, 1));
+				return \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($element, substr($propertyPath, 1));
 			} else {
 				return $element->getProperty($propertyPath, TRUE);
 			}

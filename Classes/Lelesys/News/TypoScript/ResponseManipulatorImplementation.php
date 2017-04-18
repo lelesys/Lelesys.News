@@ -8,14 +8,13 @@ namespace Lelesys\News\TypoScript;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Core\Bootstrap;
 use Neos\Flow\Mvc\ActionRequest;
-use Neos\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
 
 /**
  * Typoscript Response Manupulator
  *
  * @api
  */
-class ResponseManipulatorImplementation extends AbstractTypoScriptObject {
+class ResponseManipulatorImplementation extends \Neos\Fusion\FusionObjects\AbstractFusionObject {
 
 	/**
 	 * Inject bootstrap
