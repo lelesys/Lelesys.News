@@ -168,7 +168,7 @@
                 label: ''
               'dateTime':
                 label: 'Date'
-              'autherName':
+              'authorName':
                 label: 'Author name'
               'title':
                 label: 'Title'
