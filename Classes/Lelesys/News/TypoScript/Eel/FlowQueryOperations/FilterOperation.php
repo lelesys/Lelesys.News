@@ -6,8 +6,8 @@ namespace Lelesys\News\TypoScript\Eel\FlowQueryOperations;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
 
 /**
  * Extended EEL filter() operation for News
@@ -38,11 +38,11 @@ class FilterOperation extends \TYPO3\TYPO3CR\Eel\FlowQueryOperations\FilterOpera
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @param \TYPO3\Eel\FlowQuery\FlowQuery $flowQuery
+	 * @param \Neos\Eel\FlowQuery\FlowQuery $flowQuery
 	 * @param array $arguments
 	 * @return void
 	 */
-	public function evaluate(\TYPO3\Eel\FlowQuery\FlowQuery $flowQuery, array $arguments) {
+	public function evaluate(\Neos\Eel\FlowQuery\FlowQuery $flowQuery, array $arguments) {
 		if (isset($arguments[1]) && is_string($arguments[1]) && !empty($arguments[1])) {
 			$this->dateTimeFormat = $arguments[1];
 		}

@@ -5,10 +5,10 @@ namespace Lelesys\News\TypoScript;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Core\Bootstrap;
-use TYPO3\Flow\Mvc\ActionRequest;
-use TYPO3\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Core\Bootstrap;
+use Neos\Flow\Mvc\ActionRequest;
+use Neos\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
 
 /**
  * Typoscript Response Manupulator
@@ -35,4 +35,4 @@ class ResponseManipulatorImplementation extends AbstractTypoScriptObject {
 		$response->setHeader('Content-Type', 'application/xml');
 	}
 
-} 
+}
