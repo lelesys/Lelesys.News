@@ -8,7 +8,7 @@ Neos:
         news:
           position: 'end'
           label: 'News'
-    typoScript:
+    fusion:
       autoInclude:
         'Lelesys.News': TRUE
 
