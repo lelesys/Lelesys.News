@@ -19,7 +19,7 @@ prototype(Lelesys.News:List) {
 	configuration = ${configuration}
 
 	# TODO - remove the condition if Content
-	newsCollection = ${q(node).is('[instanceof TYPO3.Neos:Content]') ? q(newsFolderNode).children('[instanceof Lelesys.News:News]').get() : newsFolderNode.children('[instanceof Lelesys.News:News]').get()}
+	newsCollection = ${q(node).is('[instanceof Neos.Neos:Content]') ? q(newsFolderNode).children('[instanceof Lelesys.News:News]').get() : newsFolderNode.children('[instanceof Lelesys.News:News]').get()}
 
 	# Filter and sorting
 	@override.filterByCategories = ${q(node).is('[instanceof Lelesys.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : '' : ''}

@@ -1,5 +1,5 @@
-{namespace neos=TYPO3\Neos\ViewHelpers}
-{namespace ts=TYPO3\TypoScript\ViewHelpers}
+{namespace neos=Neos\Neos\ViewHelpers}
+{namespace ts=Neos\Fusion\ViewHelpers}
 <f:if condition="{items}">
     <f:then>
         <ul>
@@ -10,7 +10,7 @@
                         <f:for each="{item}" as="subItem" key="month">
                             <li>
                                 <!-- TODO: use node viewHelper for arguments-->
-                                <f:link.action action="show" controller="Frontend\Node" package="TYPO3.Neos" arguments="{node: newsListNode, year: year, month: month}">
+                                <f:link.action action="show" controller="Frontend\Node" package="Neos.Neos" arguments="{node: newsListNode, year: year, month: month}">
                                     <f:format.date format="F">{year}-{month}-01</f:format.date>
                                 </f:link.action>
                                 <span class="count">({subItem -> f:count()})</span>

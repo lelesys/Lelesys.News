@@ -1,5 +1,5 @@
 <?php
-namespace Lelesys\News\TypoScript;
+namespace Lelesys\News\Fusion;
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *

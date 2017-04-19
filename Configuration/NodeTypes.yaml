@@ -281,7 +281,7 @@
 'Lelesys.News:Menu':
   abstract: TRUE
   superTypes:
-    'Neos.Neos.NodeTypes:Menu': TRUE
+    'Neos.NodeTypes:Menu': TRUE
   properties:
     newsFolder:
       type: reference
