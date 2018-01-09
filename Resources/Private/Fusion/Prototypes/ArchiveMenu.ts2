@@ -1,5 +1,5 @@
 # Archive menu
-# this is inherited from TYPO3.Neos.NodeTypes:Menu
+# this is inherited from Neos.NodeTypes:Menu
 # So only the facility of newsFolder is added
 prototype(Lelesys.News:ArchiveMenu) < prototype(Neos.Neos.NodeTypes:Menu) {
 	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
