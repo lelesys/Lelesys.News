@@ -4,7 +4,7 @@ prototype(Lelesys.News:Category) {
 
 	# If more content is required on the category node then this code can be added
 	#  by overriding this prototype
-	#main = TYPO3.Neos:ContentCollection {
+	#main = Neos.Neos:ContentCollection {
 	#	nodePath = 'main'
 	#}
 
