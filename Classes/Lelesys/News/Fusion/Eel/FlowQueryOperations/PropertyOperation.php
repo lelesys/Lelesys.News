@@ -68,7 +68,7 @@ class PropertyOperation extends AbstractOperation {
 
 			$element = $context[0];
 			if ($propertyPath[0] === '_') {
-				return \Neos\Flow\Reflection\ObjectAccess::getPropertyPath($element, substr($propertyPath, 1));
+				return \Neos\Utility\ObjectAccess::getPropertyPath($element, substr($propertyPath, 1));
 			} else {
 				return $element->getProperty($propertyPath, TRUE);
 			}
