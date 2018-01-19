@@ -10,5 +10,5 @@ prototype(Lelesys.News:Category) {
 
 	# load list of news filtered by this category
 	newsList = Lelesys.News:List
-	newsList.@override.filterByCategories = ${node.identifier}
+	newsList.@context.filterByCategories = ${node.identifier}
 }

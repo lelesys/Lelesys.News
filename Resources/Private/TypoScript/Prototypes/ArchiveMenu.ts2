@@ -10,6 +10,6 @@ prototype(Lelesys.News:ArchiveMenu) < prototype(TYPO3.Neos.NodeTypes:Menu) {
 
 	# the node where the list view is presented, defaults to the startingPoint
 	# this can be overridden to change the different news list view
-	@override.newsListNode = ${this.startingPoint}
+	@context.newsListNode = ${this.startingPoint}
 	newsListNode = ${newsListNode}
 }
