@@ -1,16 +1,16 @@
 <?php
-namespace Lelesys\News\TypoScript\Eel\FlowQueryOperations;
+namespace Lelesys\News\Fusion\Eel\FlowQueryOperations;
 
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Eel\FlowQuery\Operations\AbstractOperation;
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\Eel\FlowQuery\FlowQuery;
-use TYPO3\TYPO3CR\Domain\Model\Node;
+use Neos\Eel\FlowQuery\Operations\AbstractOperation;
+use Neos\Flow\Annotations as Flow;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Eel\FlowQuery\FlowQuery;
+use Neos\ContentRepository\Domain\Model\Node;
 
 /**
  * EEL sort() operation to sort Nodes
@@ -51,7 +51,7 @@ class SortOperation extends AbstractOperation {
 	 */
 	public function evaluate(FlowQuery $flowQuery, array $arguments) {
 		if (!isset($arguments[0]) || empty($arguments[0])) {
-			throw new \TYPO3\Eel\FlowQuery\FlowQueryException('sort() needs property name by which nodes should be sorted', 1332492263);
+			throw new \Neos\Eel\FlowQuery\FlowQueryException('sort() needs property name by which nodes should be sorted', 1332492263);
 		} else {
 			$nodes = $flowQuery->getContext();
 			$sortByPropertyPath = $arguments[0];

@@ -16,6 +16,28 @@ prototype(Lelesys.News:List) {
 	# then it will still take the configuration value from the node properties.
 	configuration = ${Configuration.setting('Lelesys.News.view.list')}
 	configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	configuration = ${configuration}
+
+	# TODO - remove the condition if Content
+	newsCollection = ${q(node).is('[instanceof Neos.Neos:Content]') ? q(newsFolderNode).children('[instanceof Lelesys.News:News]').get() : newsFolderNode.children('[instanceof Lelesys.News:News]').get()}
+
+	# Filter and sorting
+	@override.filterByCategories = ${q(node).is('[instanceof Lelesys.News:List]') ? q(node).property_array('filterByCategories') != null ? Array.join(q(node).property_array('filterByCategories')) : '' : ''}
+	@override.filterByTag = ${request.arguments.tag}
+	@override.filterByYear = ${request.arguments.year}
+	@override.filterByMonth = ${request.arguments.month}
+
+	# 1. filter the news collection by one or many categories if applicable
+	# this internally uses the extended filter() operation
+	newsCollection.@process.filterByCategories = ${filterByCategories != null && filterByCategories != '' ? q(value).filter('[categories *= \'' + filterByCategories + '\']').get() : value}
+
+	# 2. filter the news collection by given year if applicable
+	newsCollection.@process.filterByYear = ${filterByYear != null && filterByMonth == null ? q(value).filter('[dateTime = \'' + filterByYear + '\']', 'Y').get() : value}
+
+	# 3. filter the news collection by given year and month if applicable
+	newsCollection.@process.filterByYearAndMonth = ${filterByYear != null && filterByMonth != null ? q(value).filter('[dateTime = \'' + filterByYear + '/' + filterByMonth + '\']', 'Y/m').get() : value}
+
+	# 4. filter the news collection by a tag if applicable
 	@context.configuration = ${this.configuration}
 
 	newsCollection = Lelesys.News:NewsCollector

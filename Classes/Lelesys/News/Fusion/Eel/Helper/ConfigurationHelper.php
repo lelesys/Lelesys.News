@@ -1,14 +1,14 @@
 <?php
-namespace Lelesys\News\TypoScript\Eel\Helper;
+namespace Lelesys\News\Fusion\Eel\Helper;
 
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Eel\ProtectedContextAwareInterface;
-use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Eel\ProtectedContextAwareInterface;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * News helpers for Eel contexts

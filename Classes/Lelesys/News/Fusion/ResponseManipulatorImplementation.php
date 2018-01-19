@@ -1,21 +1,20 @@
 <?php
-namespace Lelesys\News\TypoScript;
+namespace Lelesys\News\Fusion;
 /*                                                                        *
  * This script belongs to the TYPO3 Flow package "Lelesys.News".          *
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Core\Bootstrap;
-use TYPO3\Flow\Mvc\ActionRequest;
-use TYPO3\TypoScript\TypoScriptObjects\AbstractTypoScriptObject;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Core\Bootstrap;
+use Neos\Flow\Mvc\ActionRequest;
 
 /**
  * Typoscript Response Manupulator
  *
  * @api
  */
-class ResponseManipulatorImplementation extends AbstractTypoScriptObject {
+class ResponseManipulatorImplementation extends \Neos\Fusion\FusionObjects\AbstractFusionObject {
 
 	/**
 	 * Inject bootstrap
@@ -35,4 +34,4 @@ class ResponseManipulatorImplementation extends AbstractTypoScriptObject {
 		$response->setHeader('Content-Type', 'application/xml');
 	}
 
-} 
+}
