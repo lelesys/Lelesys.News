@@ -1,4 +1,4 @@
-prototype(Lelesys.News:NewsCollector) < prototype(TYPO3.TypoScript:Value) {
+prototype(Lelesys.News:NewsCollector) < prototype(Neos.Fusion:Value) {
     value = ${q(newsFolderNode).children('[instanceof Lelesys.News:News]').get()}
 
     # Filter and sorting
