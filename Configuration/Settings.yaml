@@ -1,5 +1,5 @@
-##
-# Auto include typoscript configuration
+#
+# Auto include Fusion configuration
 #
 Neos:
   Neos:
@@ -10,13 +10,13 @@ Neos:
           label: 'News'
     fusion:
       autoInclude:
-        'Lelesys.News': TRUE
+        'Lelesys.News': true
 
   Fusion:
     defaultContext:
       NewsConfiguration: 'Lelesys\News\Fusion\Eel\Helper\ConfigurationHelper'
 
-##
+#
 # The configuration for news plugin
 #
 Lelesys:

@@ -1,6 +1,6 @@
 'Lelesys.News:Folder':
   superTypes:
-    'Neos.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   ui:
     label: 'News folder'
     icon: 'icon-folder-open'
@@ -28,7 +28,7 @@
 
 'Lelesys.News:Category':
   superTypes:
-    'Neos.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   ui:
     label: 'News category'
     icon: 'icon-file'
@@ -40,7 +40,7 @@
 
 'Lelesys.News:News':
   superTypes:
-    'Neos.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
@@ -59,14 +59,14 @@
       type: boolean
       ui:
         label: 'Author is backend user'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
     authorName:
       type: string
       ui:
         label: 'Author name'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
@@ -78,7 +78,7 @@
       type: string
       ui:
         label: 'Author email'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
@@ -87,7 +87,7 @@
       type: DateTime
       ui:
         label: 'Date'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
@@ -102,7 +102,7 @@
       type: references
       ui:
         label: 'Related news'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
           editorOptions:
@@ -111,7 +111,7 @@
       type: string
       ui:
         label: 'Tags'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
@@ -127,14 +127,14 @@
       type: references
       ui:
         label: 'Categories'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
 
 'Lelesys.News:Common':
-  abstract: TRUE
+  abstract: true
   ui:
     inspector:
       groups:
@@ -146,7 +146,7 @@
       type: reference
       ui:
         label: 'News folder'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editorOptions:
@@ -156,7 +156,7 @@
       defaultValue: NULL
       ui:
         label: 'Date format'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
       validation:
@@ -168,7 +168,7 @@
       defaultValue: NULL
       ui:
         label: 'Sort by property'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
@@ -188,7 +188,7 @@
       defaultValue: NULL
       ui:
         label: 'Sort order'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
@@ -206,7 +206,7 @@
       defaultValue: NULL
       ui:
         label: 'Thumbnail max width'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
     thumbnailMaxHeight:
@@ -214,21 +214,21 @@
       defaultValue: NULL
       ui:
         label: 'Thumbnail max height'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
     filterByCategories:
       type: references
       ui:
         label: 'News in categories'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
 
 'Lelesys.News:Paginated':
-  abstract: TRUE
+  abstract: true
   ui:
     inspector:
       groups:
@@ -241,7 +241,7 @@
       defaultValue: NULL
       ui:
         label: 'Items per page'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
       validation:
@@ -251,7 +251,7 @@
       defaultValue: NULL
       ui:
         label: 'Maximum number of links'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
       validation:
@@ -259,46 +259,46 @@
 
 'Lelesys.News:List':
   superTypes:
-    'Neos.Neos:Content': TRUE
-    'Lelesys.News:Paginated': TRUE
-    'Lelesys.News:Common': TRUE
+    'Neos.Neos:Content': true
+    'Lelesys.News:Paginated': true
+    'Lelesys.News:Common': true
   ui:
     label: 'News list'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'
 
 'Lelesys.News:Latest':
   superTypes:
-    'Neos.Neos:Content': TRUE
-    'Lelesys.News:Common': TRUE
+    'Neos.Neos:Content': true
+    'Lelesys.News:Common': true
   ui:
     label: 'News latest'
     icon: 'icon-list'
     group: 'news'
-    inlineEditable: TRUE
+    inlineEditable: true
   properties:
     numberOfItems:
       type: string
       defaultValue: NULL
       ui:
         label: 'Number of items'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
 
 'Lelesys.News:Menu':
-  abstract: TRUE
+  abstract: true
   superTypes:
-    'Neos.NodeTypes:Menu': TRUE
+    'Neos.NodeTypes:Menu': true
   properties:
     newsFolder:
       type: reference
       ui:
         label: 'News folder'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'options'
           editorOptions:
@@ -306,18 +306,18 @@
 
 'Lelesys.News:CategoryMenu':
   superTypes:
-    'Lelesys.News:Menu': TRUE
+    'Lelesys.News:Menu': true
   ui:
     label: 'News category menu'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'
 
 'Lelesys.News:ArchiveMenu':
   superTypes:
-    'Lelesys.News:Menu': TRUE
+    'Lelesys.News:Menu': true
   ui:
     label: 'News archive menu'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'
