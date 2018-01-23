@@ -1,22 +1,22 @@
-##
-# Auto include typoscript configuration
 #
-TYPO3:
+# Auto include Fusion configuration
+#
+Neos:
   Neos:
     nodeTypes:
       groups:
         news:
           position: 'end'
           label: 'News'
-    typoScript:
+    fusion:
       autoInclude:
-        'Lelesys.News': TRUE
+        'Lelesys.News': true
 
-  TypoScript:
+  Fusion:
     defaultContext:
-      NewsConfiguration: 'Lelesys\News\TypoScript\Eel\Helper\ConfigurationHelper'
+      NewsConfiguration: 'Lelesys\News\Fusion\Eel\Helper\ConfigurationHelper'
 
-##
+#
 # The configuration for news plugin
 #
 Lelesys:

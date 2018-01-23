@@ -4,11 +4,11 @@ prototype(Lelesys.News:Category) {
 
 	# If more content is required on the category node then this code can be added
 	#  by overriding this prototype
-	#main = TYPO3.Neos:ContentCollection {
+	#main = Neos.Neos:ContentCollection {
 	#	nodePath = 'main'
 	#}
 
 	# load list of news filtered by this category
 	newsList = Lelesys.News:List
-	newsList.@override.filterByCategories = ${node.identifier}
+	newsList.@context.filterByCategories = ${node.identifier}
 }

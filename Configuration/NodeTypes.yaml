@@ -1,6 +1,6 @@
 'Lelesys.News:Folder':
   superTypes:
-    'TYPO3.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   ui:
     label: 'News folder'
     icon: 'icon-folder-open'
@@ -11,7 +11,7 @@
           label: 'News'
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
   properties:
     feedTitle:
       type: string
@@ -28,24 +28,24 @@
 
 'Lelesys.News:Category':
   superTypes:
-    'TYPO3.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   ui:
     label: 'News category'
     icon: 'icon-file'
     group: 'news'
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
 
 
 'Lelesys.News:News':
   superTypes:
-    'TYPO3.Neos:Document': TRUE
+    'Neos.Neos:Document': true
   childNodes:
     main:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
     comments:
-      type: 'TYPO3.Neos:ContentCollection'
+      type: 'Neos.Neos:ContentCollection'
   ui:
     label: 'News'
     icon: 'icon-file-text'
@@ -59,45 +59,50 @@
       type: boolean
       ui:
         label: 'Author is backend user'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
     authorName:
       type: string
       ui:
         label: 'Author name'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
-        'TYPO3.Neos/Validation/NotEmptyValidator': []
-        'TYPO3.Neos/Validation/StringLengthValidator':
+        'Neos.Neos/Validation/NotEmptyValidator': []
+        'Neos.Neos/Validation/StringLengthValidator':
           minimum: 1
           maximum: 255
     authorEmail:
       type: string
       ui:
         label: 'Author email'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
-        'TYPO3.Neos/Validation/EmailAddressValidator': []
+        'Neos.Neos/Validation/EmailAddressValidator': []
     dateTime:
       type: DateTime
       ui:
         label: 'Date'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
-        'TYPO3.Neos/Validation/NotEmptyValidator': []
-        'TYPO3.Neos/Validation/DateTimeValidator': []
+        'Neos.Neos/Validation/NotEmptyValidator': []
+        'Neos.Neos/Validation/DateTimeValidator': []
+      search:
+        elasticSearchMapping:
+          type: 'date'
+          format: 'date_time_no_millis'
+        indexing: '${(value ? Date.format(value, "Y-m-d\TH:i:sP") : null)}'
     relatedNews:
       type: references
       ui:
         label: 'Related news'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
           editorOptions:
@@ -106,24 +111,30 @@
       type: string
       ui:
         label: 'Tags'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
       validation:
         regularExpression:
           regularExpression: '/[a-zA-Z0-9\,]/'
+      search:
+        elasticSearchMapping:
+          type: string
+          index: not_analyzed
+          include_in_all: false
+        indexing: ${String.split(value, ',')}
     categories:
       type: references
       ui:
         label: 'Categories'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'news'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
 
 'Lelesys.News:Common':
-  abstract: TRUE
+  abstract: true
   ui:
     inspector:
       groups:
@@ -135,7 +146,7 @@
       type: reference
       ui:
         label: 'News folder'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editorOptions:
@@ -145,11 +156,11 @@
       defaultValue: NULL
       ui:
         label: 'Date format'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
       validation:
-        'TYPO3.Neos/Validation/StringLengthValidator':
+        'Neos.Neos/Validation/StringLengthValidator':
           minimum: 1
           maximum: 10
     sortProperty:
@@ -157,10 +168,10 @@
       defaultValue: NULL
       ui:
         label: 'Sort by property'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
-          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             placeholder: 'Default'
             values:
@@ -168,7 +179,7 @@
                 label: ''
               'dateTime':
                 label: 'Date'
-              'autherName':
+              'authorName':
                 label: 'Author name'
               'title':
                 label: 'Title'
@@ -177,10 +188,10 @@
       defaultValue: NULL
       ui:
         label: 'Sort order'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
-          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             placeholder: 'Default'
             values:
@@ -195,7 +206,7 @@
       defaultValue: NULL
       ui:
         label: 'Thumbnail max width'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
     thumbnailMaxHeight:
@@ -203,21 +214,21 @@
       defaultValue: NULL
       ui:
         label: 'Thumbnail max height'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
     filterByCategories:
       type: references
       ui:
         label: 'News in categories'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
 
 'Lelesys.News:Paginated':
-  abstract: TRUE
+  abstract: true
   ui:
     inspector:
       groups:
@@ -230,64 +241,64 @@
       defaultValue: NULL
       ui:
         label: 'Items per page'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
       validation:
-        'TYPO3.Neos/Validation/IntegerValidator': []
+        'Neos.Neos/Validation/IntegerValidator': []
     maximumNumberOfLinks:
       type: string
       defaultValue: NULL
       ui:
         label: 'Maximum number of links'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
       validation:
-        'TYPO3.Neos/Validation/IntegerValidator': []
+        'Neos.Neos/Validation/IntegerValidator': []
 
 'Lelesys.News:List':
   superTypes:
-    'TYPO3.Neos:Content': TRUE
-    'Lelesys.News:Paginated': TRUE
-    'Lelesys.News:Common': TRUE
+    'Neos.Neos:Content': true
+    'Lelesys.News:Paginated': true
+    'Lelesys.News:Common': true
   ui:
     label: 'News list'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'
 
 'Lelesys.News:Latest':
   superTypes:
-    'TYPO3.Neos:Content': TRUE
-    'Lelesys.News:Common': TRUE
+    'Neos.Neos:Content': true
+    'Lelesys.News:Common': true
   ui:
     label: 'News latest'
     icon: 'icon-list'
     group: 'news'
-    inlineEditable: TRUE
+    inlineEditable: true
   properties:
     numberOfItems:
       type: string
       defaultValue: NULL
       ui:
         label: 'Number of items'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'newsConfiguration'
       validation:
-        'TYPO3.Neos/Validation/IntegerValidator': []
+        'Neos.Neos/Validation/IntegerValidator': []
 
 'Lelesys.News:Menu':
-  abstract: TRUE
+  abstract: true
   superTypes:
-    'TYPO3.Neos.NodeTypes:Menu': TRUE
+    'Neos.NodeTypes:Menu': true
   properties:
     newsFolder:
       type: reference
       ui:
         label: 'News folder'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
           group: 'options'
           editorOptions:
@@ -295,18 +306,18 @@
 
 'Lelesys.News:CategoryMenu':
   superTypes:
-    'Lelesys.News:Menu': TRUE
+    'Lelesys.News:Menu': true
   ui:
     label: 'News category menu'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'
 
 'Lelesys.News:ArchiveMenu':
   superTypes:
-    'Lelesys.News:Menu': TRUE
+    'Lelesys.News:Menu': true
   ui:
     label: 'News archive menu'
     icon: 'icon-list'
-    inlineEditable: TRUE
+    inlineEditable: true
     group: 'news'

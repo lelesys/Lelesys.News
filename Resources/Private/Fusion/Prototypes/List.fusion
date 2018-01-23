@@ -1,0 +1,38 @@
+# News list
+prototype(Lelesys.News:List) {
+	# default templatePath is below which is set automatically by Neos.
+	# to change template override templatePath
+	# templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.html'
+
+	# newsFolder is read from current node's newsFolder property if exists
+	# otherwise the closest Folder node is selected
+	@context.newsFolderNode = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : q(node).closest('[instanceof Lelesys.News:Folder]').get(0)}
+
+	# configuration merged from Settings and from the node properties.
+	# this way configuration can be changed globally for all sites in Settings.yaml OR
+	# change configuration in your Site package's TypoScript by overriding the values OR
+	# if you set a new value for the configuration in the node property then it is only available
+	# for particular view. in this case if you do any change in Settings or TypoScript level
+	# then it will still take the configuration value from the node properties.
+	configuration = ${Configuration.setting('Lelesys.News.view.list')}
+	configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
+	@context.configuration = ${this.configuration}
+
+	newsCollection = Lelesys.News:NewsCollector
+	newsCollection.@if.newsFolderFound = ${newsFolderNode != null}
+
+	# this renders a single item inside the list
+	newsItem = Lelesys.News:News
+	newsItem {
+		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.html'
+	}
+
+	# uncached the list view
+	@cache {
+		mode = 'uncached'
+		context {
+			1 = 'node'
+			2 = 'documentNode'
+		}
+	}
+}

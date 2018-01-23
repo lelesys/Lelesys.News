@@ -1,4 +1,4 @@
-<item>{namespace neos=TYPO3\Neos\ViewHelpers}
+<item>{namespace neos=Neos\Neos\ViewHelpers}
     <title>{title}</title>
     <link>{neos:uri.node(node: node, format: 'html', absolute: 'TRUE')}</link>
     <description>{teaserText -> f:format.stripTags() -> f:format.crop(maxCharacters: 100, append: '...')}</description>
