@@ -2,7 +2,7 @@
 	"name": "lelesys/news",
 	"type": "typo3-flow-package",
 	"description": "News plugin for TYPO3 Neos",
-	"license": "GPL-3.0+",
+	"license": "GPL-3.0-or-later",
 	"authors": [
 		{
 			"name": "Lelesys Infotech Pvt. Ltd.",
