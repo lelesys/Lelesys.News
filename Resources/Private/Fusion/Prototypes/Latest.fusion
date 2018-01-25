@@ -8,7 +8,7 @@ prototype(Lelesys.News:Latest) < prototype(Lelesys.News:List) {
 	# this renders a single item inside the latest view
 	newsItem = Lelesys.News:News
 	newsItem {
-		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/LatestItem.html'
+		templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/LatestItem.html'
 	}
 
 	# show only few nodes

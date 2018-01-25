@@ -5,7 +5,7 @@
 rss = Lelesys.News:List
 rss {
 	templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.rss'
-	newsItem.templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.rss'
+	newsItem.templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/ListItem.rss'
 	feedTitle = ${!String.isBlank(q(newsFolderNode).property('feedTitle')) ? q(newsFolderNode).property('feedTitle') : q(newsFolderNode).property('title')}
 	feedDescription = ${!String.isBlank(q(newsFolderNode).property('feedDescription')) ? q(newsFolderNode).property('feedDescription') : q(newsFolderNode).property('title')}
 	feedUrl = ${request.httpRequest.uri}

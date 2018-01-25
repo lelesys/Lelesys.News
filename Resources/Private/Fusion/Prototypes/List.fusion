@@ -10,9 +10,9 @@ prototype(Lelesys.News:List) {
 
 	# configuration merged from Settings and from the node properties.
 	# this way configuration can be changed globally for all sites in Settings.yaml OR
-	# change configuration in your Site package's TypoScript by overriding the values OR
+	# change configuration in your Site package's Fusion by overriding the values OR
 	# if you set a new value for the configuration in the node property then it is only available
-	# for particular view. in this case if you do any change in Settings or TypoScript level
+	# for particular view. in this case if you do any change in Settings or Fusion level
 	# then it will still take the configuration value from the node properties.
 	configuration = ${Configuration.setting('Lelesys.News.view.list')}
 	configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}
@@ -24,7 +24,7 @@ prototype(Lelesys.News:List) {
 	# this renders a single item inside the list
 	newsItem = Lelesys.News:News
 	newsItem {
-		templatePath = 'resource://Lelesys.News/Private/Templates/TypoScriptObjects/ListItem.html'
+		templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/ListItem.html'
 	}
 
 	# uncached the list view

@@ -8,13 +8,13 @@ prototype(Lelesys.News:News) {
 
 	# first image found in the news content becomes the thumbnail image to be shown in the
 	# list and latest views
-	thumbnailImage = ${q(node).find('[instanceof Neos.Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
+	thumbnailImage = ${q(node).find('[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
 
 	main = Neos.Neos:ContentCollection
 	main.nodePath = 'main'
 
 	# Text from the first text node is taken as short description shown on list/latest views
-	teaserText = ${q(node).children('main').children('[instanceof Neos.Neos.NodeTypes:Text]').property('text')}
+	teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}
 
 	# split tags with comma seperated
 	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}

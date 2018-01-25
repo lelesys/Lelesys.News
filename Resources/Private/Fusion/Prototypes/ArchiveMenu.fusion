@@ -1,7 +1,7 @@
 # Archive menu
 # this is inherited from Neos.NodeTypes:Menu
 # So only the facility of newsFolder is added
-prototype(Lelesys.News:ArchiveMenu) < prototype(Neos.Neos.NodeTypes:Menu) {
+prototype(Lelesys.News:ArchiveMenu) < prototype(Neos.NodeTypes.Navigation:Navigation) {
 	startingPoint = ${q(node).property('newsFolder') != null ? q(node).property('newsFolder') : null}
 	filter = 'Lelesys.News:News'
 	entryLevel = 0
