@@ -5,7 +5,7 @@
 <div>
 	<f:if condition="{thumbnailImage}">
 		<figure class="typo3-neos-alignment-left">
-			<m:image asset="{thumbnailImage.properties.image}" maximumWidth="{configuration.thumbnailMaxWidth}" maximumHeight="{configuration.thumbnailMaxHeight}" alt="{thumbnailImage.properties.alternativeText}" />
+			<m:image image="{thumbnailImage.properties.image}" maximumWidth="{configuration.thumbnailMaxWidth}" maximumHeight="{configuration.thumbnailMaxHeight}" alt="{thumbnailImage.properties.alternativeText}" />
 		</figure>
 	</f:if>
 	<h5><neos:link.node node="{node}">{title}</neos:link.node></h5>
