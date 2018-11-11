@@ -89,7 +89,8 @@
             "Neos.Seo-20170127154600",
             "Neos.Flow-20170127183102",
             "Neos.Kickstart-20161124230102",
-            "Neos.SiteKickstarter-20161125002311"
+            "Neos.SiteKickstarter-20161125002311",
+            "Neos.SiteKickstarter-20161125095901"
         ]
     }
 }
