@@ -9,6 +9,12 @@
       groups:
         news:
           label: 'News'
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
+      'Lelesys.News:Category': true
+      'Lelesys.News:News': true
   childNodes:
     main:
       type: 'Neos.Neos:ContentCollection'
@@ -29,6 +35,10 @@
 'Lelesys.News:Category':
   superTypes:
     'Neos.Neos:Document': true
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
   ui:
     label: 'News category'
     icon: 'icon-file'
@@ -37,14 +47,18 @@
     main:
       type: 'Neos.Neos:ContentCollection'
 
-
 'Lelesys.News:News':
   superTypes:
     'Neos.Neos:Document': true
+  constraints:
+    nodeTypes:
+      '*': false
+      'Neos.Neos:Document': false
+  options:
+    fusion:
+      prototypeGenerator: ~
   childNodes:
     main:
-      type: 'Neos.Neos:ContentCollection'
-    comments:
       type: 'Neos.Neos:ContentCollection'
   ui:
     label: 'News'

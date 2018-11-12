@@ -1,26 +1,32 @@
-# single news document. formatting by single news item can be changed
-# inside other views like List, Latest by overriding the template path or
-# additional TS properties
-prototype(Lelesys.News:News) {
-	@context.configuration = ${inputConfiguration ? inputConfiguration : Configuration.setting('Lelesys.News.view.single')}
-	@context.configuration.@process.mergeConfiguration = ${inputConfiguration ? value : NewsConfiguration.mergeWithNodeProperties(value, node)}
-	configuration = ${configuration}
+prototype(Lelesys.News:NewsRenderer) < prototype(Neos.Fusion:Template) {
+    templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/News.html'
+    node = ${node}
+    @context.configuration = ${inputConfiguration ? inputConfiguration : Configuration.setting('Lelesys.News.view.single')}
+    @context.configuration.@process.mergeConfiguration = ${inputConfiguration ? value : NewsConfiguration.mergeWithNodeProperties(value, node)}
+    configuration = ${configuration}
 
-	# first image found in the news content becomes the thumbnail image to be shown in the
-	# list and latest views
-	thumbnailImage = ${q(node).find('[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
+    # first image found in the news content becomes the thumbnail image to be shown in the
+    # list and latest views
+    thumbnailImage = ${q(node).find('[instanceof Neos.NodeTypes:Image],[instanceof Neos.NodeTypes:TextWithImage]').first().get(0)}
 
-	main = Neos.Neos:ContentCollection
-	main.nodePath = 'main'
+    main = Neos.Neos:ContentCollection
+    main.nodePath = 'main'
 
-	# Text from the first text node is taken as short description shown on list/latest views
-	teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}
+    title = ${q(node).property('title')}
 
-	# split tags with comma seperated
-	tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
+    # Text from the first text node is taken as short description shown on list/latest views
+    teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}
 
-	# the node where the list view is presented
-	# this can be overridden to change the different news list view
-	@context.newsListNode = ${q(node).closest('[instanceof Lelesys.News:Folder]').get(0)}
-	newsListNode = ${newsListNode}
+    # split tags with comma seperated
+    tags = ${q(node).property('tags') != null && q(node).property('tags') != '' ? String.split(q(node).property('tags'), ',') : null}
+
+    # the node where the list view is presented
+    # this can be overridden to change the different news list view
+    @context.newsListNode = ${q(node).closest('[instanceof Lelesys.News:Folder]').get(0)}
+    newsListNode = ${newsListNode}
+}
+
+
+prototype(Lelesys.News:News) < prototype(Neos.Neos:Page) {
+    body.content.main = Lelesys.News:NewsRenderer
 }

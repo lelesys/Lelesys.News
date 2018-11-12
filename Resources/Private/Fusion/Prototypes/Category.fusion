@@ -1,14 +1,18 @@
 # Category document
-prototype(Lelesys.News:Category) {
-	templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/Category.html'
+prototype(Lelesys.News:CategoryRenderer) < prototype(Neos.Fusion:Template) {
+    templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/Category.html'
 
-	# If more content is required on the category node then this code can be added
-	#  by overriding this prototype
-	#main = Neos.Neos:ContentCollection {
-	#	nodePath = 'main'
-	#}
+    # If more content is required on the category node then this code can be added
+    #  by overriding this prototype
+    #main = Neos.Neos:ContentCollection {
+    #   nodePath = 'main'
+    #}
 
-	# load list of news filtered by this category
-	newsList = Lelesys.News:List
-	newsList.newsCollection.@context.filterByCategories = ${node.identifier}
+    # load list of news filtered by this category
+    newsList = Lelesys.News:List
+    newsList.newsCollection.@context.filterByCategories = ${node.identifier}
+}
+
+prototype(Lelesys.News:Category) < prototype(Neos.Neos:Page) {
+    body.content.main = Lelesys.News:CategoryRenderer
 }

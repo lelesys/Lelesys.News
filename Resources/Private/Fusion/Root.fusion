@@ -4,20 +4,3 @@ include: Prototypes/*.fusion
 # Objects
 include: Objects/*.fusion
 
-# Folder document shows news list by default from current folder
-prototype(Neos.Neos:PrimaryContent).folder {
-    condition = ${q(documentNode).is('[instanceof Lelesys.News:Folder]')}
-    type = 'Lelesys.News:List'
-}
-
-# Category document rendering switch
-prototype(Neos.Neos:PrimaryContent).category {
-    condition = ${q(documentNode).is('[instanceof Lelesys.News:Category]')}
-    type = 'Lelesys.News:Category'
-}
-
-# News document rendering switch
-prototype(Neos.Neos:PrimaryContent).news {
-    condition = ${q(documentNode).is('[instanceof Lelesys.News:News]')}
-    type = 'Lelesys.News:News'
-}

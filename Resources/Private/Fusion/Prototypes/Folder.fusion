@@ -1,0 +1,3 @@
+prototype(Lelesys.News:Folder) < prototype(Neos.Neos:Page) {
+    body.content.main = Lelesys.News:List
+}

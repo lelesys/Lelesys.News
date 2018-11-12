@@ -6,6 +6,26 @@ http://www.lelesys.com/en/technology/about-typo3-neos/neos-packages/news-package
 
 Even though it is for the first version, it still is valid.
 
+## NeosCMS 4.0 support
+
+By default Neos site kickstarter does not anymore create page object like "page = Neos.Neos:Page" but it creates separate Page nodetype
+based on your site package key e.g. My.Site:Page.
+
+To make the news package work you need to add following lines in your site's Root.fusion:
+```
+prototype(Lelesys.News:Folder) < prototype(My.Site:Page)
+prototype(Lelesys.News:Category) < prototype(My.Site:Page)
+prototype(Lelesys.News:News) < prototype(My.Site:Page)
+```
+In Fusion, if you have path of your main content object different than body.content.main then you can do following to
+override it:
+
+```
+prototype(Lelesys.News:News) {
+    body.content.something = Lelesys.News:NewsRenderer
+}
+```
+
 ## Using Elasticsearch
 
 To speed up handling of news filtering and sorting, using Elasticsearch is recommended.

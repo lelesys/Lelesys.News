@@ -22,7 +22,7 @@ prototype(Lelesys.News:List) {
 	newsCollection.@if.newsFolderFound = ${newsFolderNode != null}
 
 	# this renders a single item inside the list
-	newsItem = Lelesys.News:News
+	newsItem = Lelesys.News:NewsRenderer
 	newsItem {
 		templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/ListItem.html'
 	}
