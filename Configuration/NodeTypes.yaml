@@ -97,6 +97,13 @@
           group: 'news'
       validation:
         'Neos.Neos/Validation/EmailAddressValidator': []
+    place:
+      type: string
+      ui:
+        label: 'Place'
+        reloadIfChanged: true
+        inspector:
+          group: 'news'
     dateTime:
       type: DateTime
       ui:
@@ -240,6 +247,22 @@
           group: 'newsConfiguration'
           editorOptions:
             nodeTypes: ['Lelesys.News:Category']
+    mainTemplate:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Main Template'
+        reloadIfChanged: true
+        inspector:
+          group: 'newsConfiguration'
+    itemTemplate:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Item Template'
+        reloadIfChanged: true
+        inspector:
+          group: 'newsConfiguration'
 
 'Lelesys.News:Paginated':
   abstract: true

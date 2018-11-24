@@ -14,6 +14,11 @@ prototype(Lelesys.News:NewsRenderer) < prototype(Neos.Fusion:Template) {
 
     title = ${q(node).property('title')}
     dateTime = ${q(node).property('dateTime')}
+    categories = ${q(node).property('categories')}
+    authorName = ${q(node).property('authorName')}
+    authorEmail = ${q(node).property('authorEmail')}
+    relatedNews = ${q(node).property('relatedNews')}
+    place = ${q(node).property('place')}
 
     # Text from the first text node is taken as short description shown on list/latest views
     teaserText = ${q(node).children('main').children('[instanceof Neos.NodeTypes:Text]').property('text')}

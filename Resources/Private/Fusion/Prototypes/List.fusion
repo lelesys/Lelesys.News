@@ -2,7 +2,7 @@
 prototype(Lelesys.News:List) {
 	# default templatePath is below which is set automatically by Neos.
 	# to change template override templatePath
-	# templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.html'
+	templatePath.@process.customPath = ${q(node).property('mainTemplate') ? q(node).property('mainTemplate') : value}
 
 	# newsFolder is read from current node's newsFolder property if exists
 	# otherwise the closest Folder node is selected
@@ -21,10 +21,13 @@ prototype(Lelesys.News:List) {
 	newsCollection = Lelesys.News:NewsCollector
 	newsCollection.@if.newsFolderFound = ${newsFolderNode != null}
 
+    @context.pluginNode = ${node}
+
 	# this renders a single item inside the list
 	newsItem = Lelesys.News:NewsRenderer
 	newsItem {
-		templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/ListItem.html'
+        templatePath = 'resource://Lelesys.News/Private/Templates/FusionObjects/ListItem.html'
+		templatePath.@process.customPath = ${q(pluginNode).property('itemTemplate') ? q(pluginNode).property('itemTemplate') : value}
 	}
 
 	# uncached the list view
