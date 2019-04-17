@@ -2,6 +2,7 @@
 # Collects news items using a Query against the Elasticsearch index for the website
 #
 prototype(Lelesys.News:ElasticsearchNewsCollector) < prototype(Neos.Fusion:Value) {
+    @context.filterByCategories = ${q(node).is('[instanceof Lelesys.News:List]') ? q(node).property_array('filterByCategories') : null}
     categoryAndTagFilter = Lelesys.News:ElasticsearchCategoryAndTagFilter
     dateFilter = Lelesys.News:ElasticsearchDateFilter
 
@@ -17,8 +18,7 @@ prototype(Lelesys.News:ElasticsearchNewsCollector) < prototype(Neos.Fusion:Value
 #
 prototype(Lelesys.News:ElasticsearchCategoryAndTagFilter) < prototype(Neos.Fusion:Value) {
     value = Neos.Fusion:RawArray {
-        @context.filterByCategories = ${q(node).property_array('filterByCategories')}
-        categories = ${filterByCategories != null ? Array.isEmpty(filterByCategories) == false ? filterByCategories : null : null}
+        categories = ${filterByCategories != null ? (Type.isString(filterByCategories) ? String.split(filterByCategories) : (Type.isArray(filterByCategories) ? (Array.isEmpty(filterByCategories) == false ? filterByCategories : null) : null)) : null}
         tags = ${String.toString(request.arguments.tag) != '' ? String.toString(request.arguments.tag) : null}
     }
 }
