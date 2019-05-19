@@ -281,6 +281,9 @@
         reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
+      search:
+        elasticSearchMapping:
+          type: 'integer'          
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
     maximumNumberOfLinks:
@@ -291,6 +294,9 @@
         reloadIfChanged: true
         inspector:
           group: 'paginatorConfiguration'
+      search:
+        elasticSearchMapping:
+          type: 'integer'          
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
 
