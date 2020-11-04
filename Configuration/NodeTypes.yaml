@@ -313,8 +313,8 @@
 
 'Lelesys.News:Latest':
   superTypes:
-    'Neos.Neos:Content': true
-    'Lelesys.News:Common': true
+    'Lelesys.News:List': true
+    'Lelesys.News:Paginated': false
   ui:
     label: 'News latest'
     icon: 'icon-list'
