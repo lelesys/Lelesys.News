@@ -283,7 +283,7 @@
           group: 'paginatorConfiguration'
       search:
         elasticSearchMapping:
-          type: 'integer'          
+          type: 'integer'
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
     maximumNumberOfLinks:
@@ -296,7 +296,7 @@
           group: 'paginatorConfiguration'
       search:
         elasticSearchMapping:
-          type: 'integer'          
+          type: 'integer'
       validation:
         'Neos.Neos/Validation/IntegerValidator': []
 
