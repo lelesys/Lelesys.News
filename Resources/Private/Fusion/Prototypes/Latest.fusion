@@ -1,5 +1,6 @@
 # News latest (almost same as list)
 prototype(Lelesys.News:Latest) < prototype(Lelesys.News:List) {
+    templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/Latest.html'
     # load merged configuration
     @context.configuration = ${Configuration.setting('Lelesys.News.view.latest')}
     @context.configuration.@process.mergeConfiguration = ${NewsConfiguration.mergeWithNodeProperties(value, node)}

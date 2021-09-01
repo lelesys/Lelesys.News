@@ -1,5 +1,6 @@
 # News list
-prototype(Lelesys.News:List) {
+prototype(Lelesys.News:List) < prototype(Neos.Neos:Content) {
+	templatePath = 'resource://Lelesys.News/Private/Templates/NodeTypes/List.html'
 	# default templatePath is below which is set automatically by Neos.
 	# to change template override templatePath
 	templatePath.@process.customPath = ${q(node).property('mainTemplate') ? q(node).property('mainTemplate') : value}
