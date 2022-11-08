@@ -140,9 +140,7 @@
           regularExpression: '/[a-zA-Z0-9\,]/'
       search:
         elasticSearchMapping:
-          type: string
-          index: not_analyzed
-          include_in_all: false
+          type: text
         indexing: ${String.split(value, ',')}
     categories:
       type: references
