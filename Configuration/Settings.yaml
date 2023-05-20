@@ -24,6 +24,8 @@ Lelesys:
     view:
       list:
         pagination:
+          insertAbove: false
+          insertBelow: false
           itemsPerPage: 10
           maximumNumberOfLinks: 15
         sortProperty: 'dateTime'
