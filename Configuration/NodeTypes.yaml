@@ -271,6 +271,22 @@
           label: 'Paginator configuration'
           position: 2
   properties:
+    insertAbove:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Insert Above'
+        reloadIfChanged: true
+        inspector:
+          group: 'paginatorConfiguration'
+    insertBelow:
+      type: boolean
+      defaultValue: false
+      ui:
+        label: 'Insert Below'
+        reloadIfChanged: true
+        inspector:
+          group: 'paginatorConfiguration'
     itemsPerPage:
       type: string
       defaultValue: NULL
